@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <div class="output-wrap">
-      <h2>Output:</h2>
-      <div class="output" v-html="output" />
+      <button @click="bold = !bold">B</button>
+      <button @click="fontsize -= 1">-</button>
+      <button @click="fontsize += 1">+</button>
+      <h5>Output:</h5>
+      <div :class="outputClass" :style="'font-size: ' + fontsize + 'px;'" v-html="output" />
     </div>
-    <input class="input" type="text" v-model="text" placeholder="Type some text here">
+    <input :class="'input'" type="text" v-model="text" placeholder="Type some text here">
   </div>
 </template>
 
@@ -14,7 +17,18 @@ export default {
   data () {
     return {
       text: '',
-      output: ''
+      output: '',
+      bold: false,
+      fontsize: 20
+    }
+  },
+
+  computed: {
+    outputClass () {
+      return {
+        'output': true,
+        'bold': this.bold,  
+      }
     }
   },
 
@@ -67,6 +81,10 @@ export default {
 .output {
   margin: 30px 0 0 0;
   padding: 10px;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .style1 { font-family: 'handwrite1'; }
