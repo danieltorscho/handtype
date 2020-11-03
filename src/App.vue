@@ -23,7 +23,7 @@ export default {
       // Characters from text
       const characters = val.split('').map(i => {
         // Random number number to choose between fonts
-        let random = Math.floor(Math.random() * (2 - 1 + 1)) + 1
+        let random = Math.floor(Math.random() * (3 - 1 + 1)) + 1
         return '<span class="style' + random + '">' + i + '</span>'
       })
       this.output = characters.join('')
@@ -34,12 +34,16 @@ export default {
 
 <style>
 @font-face {
-  font-family: "maga1";
-  src: local("maga1"), url(./assets/fonts/handwrite1.ttf) format("truetype");
+  font-family: "handwrite1";
+  src: local("handwrite1"), url(./assets/fonts/handwrite1.ttf) format("truetype");
 }
 @font-face {
-  font-family: "maga2";
-  src: local("maga2"), url(./assets/fonts/handwrite2.ttf) format("truetype");
+  font-family: "handwrite2";
+  src: local("handwrite2"), url(./assets/fonts/handwrite2.ttf) format("truetype");
+}
+@font-face {
+  font-family: "handwrite3";
+  src: local("handwrite3"), url(./assets/fonts/handwrite3.ttf) format("truetype");
 }
 
 #app {
@@ -65,6 +69,7 @@ export default {
   padding: 10px;
 }
 
-.style1 { font-family: 'maga1'; }
-.style2 { font-family: 'maga2'; }
+.style1 { font-family: 'handwrite1'; }
+.style2 { font-family: 'handwrite2'; }
+.style3 { font-family: 'handwrite3'; }
 </style>
