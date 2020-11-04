@@ -1,4 +1,5 @@
 # handtype
+Demo available at: https://danieltorscho.github.io/handtype/
 
 ## Project setup
 ```
