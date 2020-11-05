@@ -5,7 +5,9 @@
       <button @click="fontsize -= 1">-</button>
       <button @click="fontsize += 1">+</button>
       <h5>Output:</h5>
-      <div :class="outputClass" :style="'font-size: ' + fontsize + 'px;'" v-html="output" />
+      <div :class="outputClass" :style="'font-size: ' + fontsize + 'px;'">
+        <span v-for="(item, i) in text.split('')" :key="item + i" :class="`style${i % styles.length + 1}`" v-html="item" />
+      </div>
     </div>
     <input :class="'input'" type="text" v-model="text" placeholder="Type some text here">
   </div>
@@ -17,7 +19,7 @@ export default {
   data () {
     return {
       text: '',
-      output: '',
+      styles: [1, 2, 3],
       bold: false,
       fontsize: 20
     }
@@ -27,20 +29,8 @@ export default {
     outputClass () {
       return {
         'output': true,
-        'bold': this.bold,  
+        'bold': this.bold,
       }
-    }
-  },
-
-  watch: {
-    text (val) {
-      // Characters from text
-      const characters = val.split('').map(i => {
-        // Random number number to choose between fonts
-        let random = Math.floor(Math.random() * (3 - 1 + 1)) + 1
-        return '<span class="style' + random + '">' + i + '</span>'
-      })
-      this.output = characters.join('')
     }
   }
 }
@@ -67,20 +57,33 @@ export default {
   color: #2c3e50;
 }
 
+button {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+  transition: 200ms all;
+}
+button:last-of-type {
+  margin-right: 0;
+}
+button:hover {
+  background: #eee;
+  border-radius: #ccc;
+}
+
 .input {
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
   padding: 10px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .output {
   margin: 30px 0 0 0;
   padding: 10px;
+  word-wrap: break-word;
 }
 
 .bold {
